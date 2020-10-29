@@ -15,31 +15,37 @@ class ScheduleController extends Controller
 
     public function create(Request $request)
     {
-        dd($request);
-        //リダイレクト
-        return view("schedule/create");
+        $schedule = new Schedule();
+        $schedule->place = $request['place'];
+        $schedule->content = $request['content'];
+        $schedule->begin = $request['begin'];
+        $schedule->end = $request['end'];
+        $schedule->save();
+
+        return redirect()->route("schedule.index");
     }
 
-    public function edit()
+    public function update(Request $request ,$schedule_id)
     {
-        return view("schedule/create");
+        $schedule = new Schedule();
+        $schedule = $schedule->where('id',$schedule_id)->first();
+        $schedule->fill($request->all())->save();
+        return redirect()->route("schedule.index");
     }
 
-    public function update_form()
+    public function edit($schedule_id)
     {
-        return view("schedule/update");
+        $schedule = new Schedule();
+        $schedule = $schedule->where('id', $schedule_id)->first();
+        return view("schedule/update", compact('schedule'));
     }
 
-    public function update(Request $request)
+    public function destroy($schedule_id)
     {
-        //リダイレクト
-        return view("schedule/update");
-    }
-
-    public function destroy(Request $request)
-    {
-        //リダイレクト
-        return view("schedule/destroy");
+        $schedule = new Schedule();
+        $schedule = $schedule->where('id', $schedule_id);
+        $schedule->delete();
+        return redirect()->route("schedule.index");
     }
 
     public function month(Request $request)

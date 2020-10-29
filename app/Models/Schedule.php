@@ -10,6 +10,8 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'place', 'content', 'begin', 'end'
+        'id','place', 'content', 'begin', 'end'
     ];
+
+    public $timestamps = false;
 }
