@@ -19,12 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('schedule', ScheduleController::class)->only(['index', 'create','edit', 'update', 'destroy']);
-    Route::get('schedule/month',[ScheduleController::class,'month'])->name('ScheduleMonth');
-    Route::get('schedule/week',[ScheduleController::class,'week'])->name('ScheduleWeek');
+    Route::resource('schedule', ScheduleController::class)->only(['index', 'create', 'edit', 'update', 'destroy']);
+    Route::get('schedule/month', [ScheduleController::class, 'month'])->name('ScheduleMonth');
+    Route::get('schedule/week', [ScheduleController::class, 'week'])->name('ScheduleWeek');
 });
