@@ -8,24 +8,28 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <h2>新規作成</h2>
-                <form action='{{ route('schedule.create') }}' method="GET">
-                    <label for='place'>場所</label>
-                    <input type='text' name='place' id='place' value='test' required>
+                <div class='py-12'>
+                    <h1>新規作成</h1>
+                    <form action='{{ route('schedule.create') }}' method="GET">
+                        <label for='place'>場所</label>
+                        <input type='text' name='place' id='place' value='test' required>
 
-                    <label for='content'>内容</label>
-                    <input type='text' name='content' id='content' value='test' required>
+                        <label for='content'>内容</label>
+                        <input type='text' name='content' id='content' value='test' required>
 
-                    <label for='begin'>開始</label>
-                    <input type='date' name='begin' id='begin' value="2020-11-11" required>
+                        <label for='begin'>開始</label>
+                        <input type='date' name='begin' id='begin' value="2020-11-11" required>
 
-                    <label for='end'>終了</label>
-                    <input type='date' name='end' id='end' value="2020-11-11" required>
+                        <label for='end'>終了</label>
+                        <input type='date' name='end' id='end' value="2020-11-11" required>
 
-                    <button type='submit'>作成</button>
-                </form>
+                        <button type='submit' onclick="window.checkdate()">作成</button>
+                    </form>
+                </div>
 
                 <h2>スケジュール一覧</h2>
+                <h2><a href='{{ route('ScheduleMonth') }}'>月間表示</a></h2>
+                <h2><a href='{{ route('ScheduleWeek') }}'>週間表示</a></h2>
 
                 <table>
                     <thead>
@@ -67,3 +71,18 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function checkdate()
+    {
+    console.log('check');
+    begin = document.getElementById('begin').value;
+    end = document.getElementById('end').value;
+    if (begin > end)
+    {
+    tmp = begin;
+    document.getElementById('begin').value = end;
+    document.getElementById('end').value = tmp;
+    }
+    }
+</script>
