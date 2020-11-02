@@ -23,7 +23,8 @@
                     <label for='end'>終了</label>
                     <input type='date' name='end' id='end' value="{{ $schedule['end'] }}" required>
 
-                    <button type='submit'>更新</button>
+                    <button type='submit'
+                        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">更新</button>
                 </form>
             </div>
         </div>

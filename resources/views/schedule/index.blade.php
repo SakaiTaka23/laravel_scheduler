@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class='py-12'>
-                    <h1>新規作成</h1>
+                    <h1 class="font-black">新規作成</h1>
                     <form action='{{ route('schedule.create') }}' method="GET">
 
                         <label for='place'>場所</label>
@@ -24,14 +24,23 @@
                         <label for='end'>終了</label>
                         <input type='date' name='end' id='end' value="2020-11-11" required>
 
-                        <button type='submit' class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onclick="window.checkdate()">作成</button>
+                        <button type='submit'
+                            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                            onclick="window.checkdate()">作成</button>
                     </form>
                 </div>
 
-                <h2>スケジュール一覧</h2>
-                <div class='flex flex-auto pb-12'>
-                    <h2 class='my-3 py-3'><a href='{{ route('ScheduleMonth') }}'>月間表示</a></h2>
-                    <h2 class='my-3 py-3'><a href='{{ route('ScheduleWeek') }}'>週間表示</a></h2>
+                <h2 class="font-black">スケジュール一覧</h2>
+                <div class='flex flex-auto justify-around pb-12'>
+                    <h2 class='my-3 py-3'><a href='{{ route('schedule.index') }}'
+                            class="bg-transparent hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-2 px-4 border border-teal-500 hover:border-transparent rounded">全表示</a>
+                    </h2>
+                    <h2 class='my-3 py-3'><a href='{{ route('ScheduleMonth') }}'
+                            class="bg-transparent hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-2 px-4 border border-teal-500 hover:border-transparent rounded">月間表示</a>
+                    </h2>
+                    <h2 class='my-3 py-3'><a href='{{ route('ScheduleWeek') }}'
+                            class="bg-transparent hover:bg-teal-500 text-teal-700 font-semibold hover:text-white py-2 px-4 border border-teal-500 hover:border-transparent rounded">週間表示</a>
+                    </h2>
                 </div>
 
                 <div class='flex justify-center'>
