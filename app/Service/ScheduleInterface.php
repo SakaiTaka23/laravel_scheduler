@@ -12,9 +12,9 @@ interface ScheduleServiceInterface
 
     public function createSchedule($place, $content, $begin, $end, $user_id): void;
 
-    public function updateSchedule($id,$place, $content, $begin, $end, $user_id): void;
+    public function updateSchedule($schedule_id,$place, $content, $begin, $end, $user_id): void;
 
-    public function ScheduleFromId($user_id): Collection;
+    public function ScheduleFromId($user_id): Schedule;
 
     public function deleteSchedule($schedule_id): void;
 
