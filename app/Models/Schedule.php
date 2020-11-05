@@ -14,6 +14,10 @@ class Schedule extends Model
     ];
 
     public $timestamps = false;
+    /**
+     * @var mixed
+     */
+    private $user_id;
 
     public function user()
     {

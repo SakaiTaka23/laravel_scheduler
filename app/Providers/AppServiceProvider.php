@@ -4,9 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Service\ScheduleServiceInterface;
-use App\Service\Production\ScheduleService;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ScheduleServiceInterface::class, ScheduleService::class);
+        $this->app->singleton(\App\Service\ScheduleServiceInterface::class, \App\Service\Production\ScheduleService::class);
     }
 
     /**

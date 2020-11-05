@@ -2,9 +2,11 @@
 
 namespace App\Service\Production;
 
-use App\Service\ScheduleServiceInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
+
 use App\Models\Schedule;
+use App\Service\ScheduleServiceInterface;
 
 class ScheduleService implements ScheduleServiceInterface
 {
@@ -15,18 +17,19 @@ class ScheduleService implements ScheduleServiceInterface
         $this->schedule = $schedule;
     }
 
-    public function getUserSchedule($user_id): Schedule
+    public function getUserSchedule($user_id): Collection
     {
         return $this->schedule->where('user_id', $user_id)->get();
     }
 
     public function createSchedule($place, $content, $begin, $end, $user_id): void
     {
-        $schedule = $this->schedule->place = $place;
-        $schedule = $this->schedule->content = $content;
-        $schedule = $this->schedule->begin = $begin;
-        $schedule = $this->schedule->end = $end;
-        $schedule = $this->schedule->user_id = $user_id;
+        $schedule = $this->schedule;
+        $schedule->place = $place;
+        $schedule->content = $content;
+        $schedule->begin = $begin;
+        $schedule->end = $end;
+        $schedule->user_id = $user_id;
         $schedule->create();
         return;
     }
@@ -42,7 +45,7 @@ class ScheduleService implements ScheduleServiceInterface
         $schedule->update();
     }
 
-    public function ScheduleFromId($schedule_id): Schedule
+    public function ScheduleFromId($schedule_id): Collection
     {
         return $this->schedule->where('id', $schedule_id)->get();
     }
@@ -53,13 +56,13 @@ class ScheduleService implements ScheduleServiceInterface
         return;
     }
 
-    public function ScheduleMonth($user_id): Schedule
+    public function ScheduleMonth($user_id): Collection
     {
         return $this->schedule->where('user_id', $user_id)->where('begin', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))
             ->orWhere('end', '<=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->get();
     }
 
-    public function ScheduleWeek($user_id): Schedule
+    public function ScheduleWeek($user_id): Collection
     {
         return $this->schedule->where('user_id', $user_id)->where('begin', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 WEEK)'))
             ->orWhere('end', '<=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->get();
