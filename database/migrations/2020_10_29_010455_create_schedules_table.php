@@ -19,6 +19,7 @@ class CreateSchedulesTable extends Migration
             $table->string('content');
             $table->date('begin');
             $table->date('end');
+            $table->integer('user_id')->unsigned();
         });
     }
 

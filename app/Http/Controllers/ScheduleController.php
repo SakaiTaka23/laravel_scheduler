@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
     public function index()
     {
-        $schedules = Schedule::all();
+        $schedules = new Schedule();
+        $schedules = $schedules->where('user_id',Auth::id())->get();
         return view("schedule/index", compact('schedules'));
     }
 
@@ -21,6 +23,7 @@ class ScheduleController extends Controller
         $schedule->content = $request['content'];
         $schedule->begin = $request['begin'];
         $schedule->end = $request['end'];
+        $schedule->user_id = Auth::id();
         $schedule->save();
 
         return redirect()->route("schedule.index");
@@ -52,7 +55,7 @@ class ScheduleController extends Controller
     public function month()
     {
         $schedules = new Schedule();
-        $schedules = $schedules->where('begin', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))
+        $schedules = $schedules->where('user_id', Auth::id())->where('begin', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))
             ->orWhere('end', '<=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->get();
         return view("schedule/index", compact('schedules'));
     }
@@ -60,7 +63,7 @@ class ScheduleController extends Controller
     public function week()
     {
         $schedules = new Schedule();
-        $schedules = $schedules->where('begin', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 WEEK)'))
+        $schedules = $schedules->where('user_id', Auth::id())->where('begin', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 WEEK)'))
             ->orWhere('end', '<=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->get();
         return view("schedule/index", compact('schedules'));
     }
