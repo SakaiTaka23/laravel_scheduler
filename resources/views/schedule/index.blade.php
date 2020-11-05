@@ -13,16 +13,16 @@
                     <form action='{{ route('schedule.create') }}' method="GET">
 
                         <label for='place'>場所</label>
-                        <input type='text' name='place' id='place' value='test' required>
+                        <input type='text' name='place' id='place' required>
 
                         <label for='content'>内容</label>
-                        <input type='text' name='content' id='content' value='test' required>
+                        <input type='text' name='content' id='content' required>
 
                         <label for='begin'>開始</label>
-                        <input type='date' name='begin' id='begin' value="2020-11-11" required>
+                        <input type='date' name='begin' id='begin' required>
 
                         <label for='end'>終了</label>
-                        <input type='date' name='end' id='end' value="2020-11-11" required>
+                        <input type='date' name='end' id='end' required>
 
                         <button type='submit'
                             class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"

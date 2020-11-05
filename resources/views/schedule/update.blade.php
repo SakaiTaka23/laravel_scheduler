@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <form action='{{ route('schedule.update',['schedule'=>$schedule['id']]) }}' method="POST">
+                <form action='{{ route('schedule.update',['schedule'=>$schedule_id]) }}' method="POST">
                     @method("PUT")
                     @csrf
                     <label for='place'>場所</label>
